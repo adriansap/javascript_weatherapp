@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- main container-->
+
+        <div class="container-left">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Search City</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="" aria-label=""
+                            aria-describedby="basic-addon1" id="inputted-city">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="search-button">Search</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="information">
+            <div class="col-md-6">
+                <div id="city-and-date"></div>
+                <div id="temperature"></div> <br>
+                <div id="humidity"></div> <br>
+                <div id="windspeed"></div> <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--over here , city search history-->
+        <div class="col-md-2" id="search-history">
+            <!-- will post history to this id-->
+
+        </div>
+    </div>
+    </div>
+
+    <div class="container-right">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+
+    </div><!-- main container-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</body>
+
+</html>
