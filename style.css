@@ -9,7 +9,7 @@ body {
 
 #jumbojumbo {
     position:relative;
-    left:300px;
+    left:200px;
     width:800px;
 }
 
@@ -29,8 +29,9 @@ body {
 }
 
 #search-history {
-    margin-right:0px !important;
-    width:100px;
+    margin:1px;
+    padding:1px;
+    width:150px;
 }
 
 #plus1day,#plus2day,#plus3day,#plus4day,#plus5day {
@@ -43,4 +44,17 @@ body {
     border: 1px solid black;
     position:relative;
     right:0px;
+}
+
+.right-half {
+    width:0px;
+}
+
+.cities {
+    width:150px;
+    margin:0px;
+}
+
+#city-and-date {
+    font-size:20px;
 }
