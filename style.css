@@ -1,4 +1,46 @@
+body {
+    width:1440px;
+}
+
 #information {
    position:relative;
    left:380px;
+}
+
+#jumbojumbo {
+    position:relative;
+    left:300px;
+    width:800px;
+}
+
+.header {
+    width:1440px;
+    height:60px;
+    background-color:black;
+    color:white;
+    font-size:30px;
+    text-align:center;
+}
+
+#five-day-header{
+    text-align:center;
+    font-size:20px;
+    
+}
+
+#search-history {
+    margin-right:0px !important;
+    width:100px;
+}
+
+#plus1day,#plus2day,#plus3day,#plus4day,#plus5day {
+    background-color:lightblue;
+    color:white;
+    height:200px;
+    width:130px;
+    margin:10px;
+    padding:10px;
+    border: 1px solid black;
+    position:relative;
+    right:0px;
 }

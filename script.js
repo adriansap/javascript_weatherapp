@@ -20,14 +20,13 @@ function renderButtons() {
     }
 }
 
-// This function handles events where the add movie button is clicked
+
 $("#search-button").on("click", function (event) {
     // event.preventDefault() prevents submit button from trying to send a form.
     // Using a submit button instead of a regular button allows the user to hit
     // "Enter" instead of clicking the button if desired
     event.preventDefault();
-    // Write code to grab the text the user types into the input field
-    // Write code to add the new movie into the movies array
+
     inputtedCity = $("#inputted-city").val();
     cities.push(inputtedCity);
     console.log("cities currently holds: " + cities);
@@ -51,16 +50,37 @@ $("#search-button").on("click", function (event) {
         method: "GET" // (GET and POST most commonly used methods.)
     }).then(function (response) { //after the call, after info is returned, .then ...
 
+        console.log(response);
+        // var currentDate = text(moment().add(10, 'days').calendar()); // [NOT WORKING]
+        // $("#city-and-date").text(inputtedCity + " " + currentDate); //[NOT WORKING]
 
-        // $("#city-and-date").html(inputtedCity + " " + text(moment().add(10, 'days').calendar()));
-        // Create CODE HERE to calculate the temperature (converted from Kelvin)
         $("#temperature").text("Temperature: " + response.main.temp);
         $("#humidity").text("Humidity: " + response.main.humidity);
         $("#windspeed").text("Wind speed: " + response.wind.speed);
+        $("#uv-index").text("UV Index :" + response.uv)
 
         var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
         $(".temp").append(cTemp);
     })
+
+    //3. AJAX call for 5 day forecast, with special API for such purpose
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + "{" + inputtedCity + "}" + "," + "{United States of America}&cnt={5}" + "&appid=" + APIKey;
+
+    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
+        url: queryURL2,
+        method: "GET" // (GET and POST most commonly used methods.)
+    }).then(function (response2) { //after the call, after info is returned, .then ...
+
+        console.log(response2);
+
+        // $("#plus1day").text("Temperature: " + response.main.temp);
+        // $("#plus2day").text("Humidity: " + response.main.humidity);
+        // $("#plus3day").text("Wind speed: " + response.wind.speed);
+        // $("#plus4day").text("UV Index :" + response.uv)
+        // $("#plus5day").text("UV Index :" + response.uv)
+
+    })
+
 
 });
 
