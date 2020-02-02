@@ -1,7 +1,7 @@
 
 //1. City history buttons
 var cities = [];
-var inputtedCity = "";
+var inputtedCity;
 var uvIndex;
 var cTemp;
 
@@ -39,8 +39,8 @@ $("#search-button").on("click", function (event) {
     localStorage.setItem("cities", cities_stringy);
 
     //Post City and current Date to jumbotron
-    var currentDate = moment().add(10, 'days').calendar(); // [NOT WORKING]
-    $("#city-and-date").text(inputtedCity + " " + currentDate); //[NOT WORKING]
+    var currentDate = moment().add(10, 'days').calendar();
+    $("#city-and-date").text(inputtedCity + " " + currentDate);
 
     //set to local storage
     // localStorage.setItem(JSON.stringify("cities history", cities));
@@ -108,7 +108,7 @@ $("#search-button").on("click", function (event) {
     })
 
     // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + inputtedCity + "," + "United States of America&cnt={5}" + APIKey;
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + inputtedCity + "," + "us" + "&appid=" + APIKey;
 
     $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
         url: queryURL2,
@@ -117,11 +117,13 @@ $("#search-button").on("click", function (event) {
 
         console.log(response2);
 
-        // $("#plus1day").text(date+1 + response2.day1);
-        // $("#plus2day").text("Humidity: " + response.main.humidity);
-        // $("#plus3day").text("Wind speed: " + response.wind.speed);
-        // $("#plus4day").text("UV Index :" + response.uv)
-        // $("#plus5day").text("UV Index :" + response.uv)
+        $("#plus1day").text(
+            "Temperature :" + response2.list[0].main.temp
+        );
+        $("#plus2day").text("Humidity: " + response.main.humidity);
+        $("#plus3day").text("Wind speed: " + response.wind.speed);
+        $("#plus4day").text("UV Index :" + response.uv)
+        $("#plus5day").text("UV Index :" + response.uv)
 
     })
 
@@ -165,9 +167,9 @@ function renderInfo() {
     }).then(function (response) { //after the call, after info is returned, .then ...
 
         console.log(response);
-
+        var currentDate = moment().add(10, 'days').calendar();
+        $("#city-and-date").text(inputtedCity + " " + currentDate); //[NOT UPDATING/WORKING]
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
-
         $("#temperature").text("Temperature: " + cTemp);
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
         $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
