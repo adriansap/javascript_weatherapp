@@ -116,32 +116,48 @@ $("#search-button").on("click", function (event) {
     }).then(function (response2) { //after the call, after info is returned, .then ...
 
         console.log(response2);
-
+        var oneDaysForward = moment().add(1, 'day');
         $("#plus1day").text(
+            oneDaysForward.format('dddd MMMM DD') +
             "Temperature :" + response2.list[0].main.temp +
             "Humidity :" + response2.list[0].main.humidity +
             "Wind speed :" + response2.list[0].wind.speed
         );
 
-
+        var twoDaysForward = moment().add(2, 'day');
         $("#plus2day").text(
+            twoDaysForward.format('dddd MMMM DD') +
             "Temperature :" + response2.list[1].main.temp +
             "Humidity :" + response2.list[1].main.humidity +
             "Wind speed :" + response2.list[1].wind.speed
 
         );
+
+        var threeDaysForward = moment().add(3, 'day');
+
         $("#plus3day").text(
+            threeDaysForward.format('dddd MMMM DD') +
             "Temperature :" + response2.list[2].main.temp +
             "Humidity :" + response2.list[2].main.humidity +
             "Wind speed :" + response2.list[2].wind.speed
 
         );
+
+        var fourDaysForward = moment().add(4, 'day');
+
         $("#plus4day").text(
+            fourDaysForward.format('dddd MMMM DD') +
+
             "Temperature :" + response2.list[4].main.temp +
             "Humidity :" + response2.list[4].main.humidity +
             "Wind speed :" + response2.list[4].wind.speed
         )
+
+        var fiveDaysForward = moment().add(5, 'day');
+
         $("#plus5day").text(
+            fiveDaysForward.format('dddd MMMM DD') +
+
             "Temperature :" + response2.list[5].main.temp +
             "Humidity :" + response2.list[5].main.humidity +
             "Wind speed :" + response2.list[5].wind.speed
