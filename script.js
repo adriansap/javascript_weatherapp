@@ -5,9 +5,11 @@ var inputtedCity;
 var uvIndex;
 var cTemp;
 
+renderButtons(); //to render buttons from localstorage, on page refresh, for instance. [not working]
+
 function renderButtons() {
 
-    // Delete the content inside the buttons-view div prior to adding new movies
+    // Delete the content inside the buttons-view div prior to adding new cities
     // (this is necessary otherwise you will have repeat buttons)
     $("#search-history").empty();
     // Loop through the array of movies, then generate buttons for each movie in the array
@@ -198,6 +200,9 @@ function renderInfo() {
         $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
         // $("#uv-index").text("UV Index :" + uvIndex)
 
+        //cloudy-ness
+        var cloudy = response.clouds.all
+        console.log("cloudy: " + cloudy)
         //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
 
         var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
