@@ -53,6 +53,8 @@ body {
 .cities {
     width:250px;
     margin:0px;
+    position:relative;
+    left:14px;
 }
 
 #city-and-date {

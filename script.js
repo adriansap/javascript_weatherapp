@@ -42,10 +42,8 @@ $("#search-button").on("click", function (event) {
     var currentDate = moment().add(10, 'days').calendar();
     $("#city-and-date").text(inputtedCity + " " + currentDate);
 
-    //set to local storage
-    // localStorage.setItem(JSON.stringify("cities history", cities));
 
-    // The renderButtons function is called, rendering the list of movie buttons
+    // The renderButtons function is called, rendering the list of history buttons
     renderButtons();
 
     //3. Get latitude & longitude for city via AJAX call to opencagedata.org
@@ -100,9 +98,9 @@ $("#search-button").on("click", function (event) {
 
 
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
-        $("#temperature").text("Temperature: " + cTemp);
-        $("#humidity").text("Humidity: " + response.main.humidity);
-        $("#windspeed").text("Wind speed: " + response.wind.speed);
+        $("#temperature").text("Temperature: " + cTemp + "F");
+        $("#humidity").text("Humidity: " + response.main.humidity + "%");
+        $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
         // $("#uv-index").text("UV Index :" + uvIndex);
 
     })
@@ -148,9 +146,9 @@ $("#search-button").on("click", function (event) {
         $("#plus4day").text(
             fourDaysForward.format('dddd MMMM DD') +
 
-            "Temperature :" + response2.list[4].main.temp +
-            "Humidity :" + response2.list[4].main.humidity +
-            "Wind speed :" + response2.list[4].wind.speed
+            "Temperature :" + response2.list[3].main.temp +
+            "Humidity :" + response2.list[3].main.humidity +
+            "Wind speed :" + response2.list[3].wind.speed
         )
 
         var fiveDaysForward = moment().add(5, 'day');
@@ -158,9 +156,9 @@ $("#search-button").on("click", function (event) {
         $("#plus5day").text(
             fiveDaysForward.format('dddd MMMM DD') +
 
-            "Temperature :" + response2.list[5].main.temp +
-            "Humidity :" + response2.list[5].main.humidity +
-            "Wind speed :" + response2.list[5].wind.speed
+            "Temperature :" + response2.list[4].main.temp +
+            "Humidity :" + response2.list[4].main.humidity +
+            "Wind speed :" + response2.list[4].wind.speed
 
         );
 
