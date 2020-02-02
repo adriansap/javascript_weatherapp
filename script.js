@@ -193,7 +193,7 @@ function renderInfo() {
 
         console.log(response);
         var currentDate = moment().add(10, 'days').calendar();
-        $("#city-and-date").text(inputtedCity + " " + currentDate); //[NOT UPDATING/WORKING]
+        $("#city-and-date").text(cityButtonClicked + " " + currentDate); //[NOT UPDATING/WORKING]
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
         $("#temperature").text("Temperature: " + cTemp);
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
@@ -229,12 +229,13 @@ function renderInfo() {
 
         console.log(response2);
         var oneDaysForward = moment().add(1, 'day');
-        $("#plus1day").text(
-            oneDaysForward.format('dddd MMMM DD') +
+        $("#plus1day").html(
+            oneDaysForward.format('dddd MMMM DD') + "<br>" +
             "Temperature :" + response2.list[0].main.temp +
-            "Humidity :" + response2.list[0].main.humidity +
-            "Wind speed :" + response2.list[0].wind.speed
+            "Humidity :" + response2.list[0].main.humidity + "%" +
+            "Wind speed :" + response2.list[0].wind.speed + "MPH"
         );
+
 
         var twoDaysForward = moment().add(2, 'day');
         $("#plus2day").text(
