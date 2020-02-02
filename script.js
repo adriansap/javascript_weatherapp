@@ -68,8 +68,8 @@ $("#search-button").on("click", function (event) {
         $("#windspeed").text("Wind speed: " + response.wind.speed);
         $("#uv-index").text("UV Index :" + response.uv)
 
-        var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
-        $(".temp").append(cTemp);
+        // var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
+        // $(".temp").append(cTemp);
     })
 
     // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
@@ -107,13 +107,15 @@ $("#search-button").on("click", function (event) {
         console.log(cityLon);
 
         //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
-        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLon + "&appikey=5be3cfd9c54b7db5d70a69fca9f026e4"
+
+        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appi={5be3cfd9c54b7db5d70a69fca9f026e4}&lat={" + cityLat + "}" + "&lon={" + cityLon + "}"
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
             url: queryURL4,
             method: "GET" // (GET and POST most commonly used methods.)
         }).then(function (response4) { //after the call, after info is returned, .then ...
 
-            console.log(response4);
+            console.log("response4 uv :" + response4);
+            // $("#uv-index").text(response)
 
         })
 
@@ -138,3 +140,35 @@ $("#search-button").on("click", function (event) {
 
 //************************************************************************************* */
 
+// on click of generated buttons , retrieve info to jumbotron of particular city
+$(document).on("click", ".cities", renderInfo); //listen for click on buttons with class .cities, if click execute renderInfo()
+
+function renderInfo() {
+    //2. AJAX call
+    console.log("this : " + $(this).attr("data-name"));
+    var cityButtonClicked = $(this).attr("data-name"); //get attribute which is the city in question that is clicked.
+
+    var APIKey = "5be3cfd9c54b7db5d70a69fca9f026e4";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityButtonClicked + "&appid=" + APIKey;
+
+    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
+        url: queryURL,
+        method: "GET" // (GET and POST most commonly used methods.)
+    }).then(function (response) { //after the call, after info is returned, .then ...
+
+        console.log(response);
+
+
+        $("#temperature").text("Temperature: " + response.main.temp);
+        $("#humidity").text("Humidity: " + response.main.humidity);
+        $("#windspeed").text("Wind speed: " + response.wind.speed);
+        $("#uv-index").text("UV Index :" + response.uv)
+
+        var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
+        $(".temp").append(cTemp);
+    })
+
+
+}
