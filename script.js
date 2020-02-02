@@ -118,12 +118,35 @@ $("#search-button").on("click", function (event) {
         console.log(response2);
 
         $("#plus1day").text(
-            "Temperature :" + response2.list[0].main.temp
+            "Temperature :" + response2.list[0].main.temp +
+            "Humidity :" + response2.list[0].main.humidity +
+            "Wind speed :" + response2.list[0].wind.speed
         );
-        $("#plus2day").text("Humidity: " + response.main.humidity);
-        $("#plus3day").text("Wind speed: " + response.wind.speed);
-        $("#plus4day").text("UV Index :" + response.uv)
-        $("#plus5day").text("UV Index :" + response.uv)
+
+
+        $("#plus2day").text(
+            "Temperature :" + response2.list[1].main.temp +
+            "Humidity :" + response2.list[1].main.humidity +
+            "Wind speed :" + response2.list[1].wind.speed
+
+        );
+        $("#plus3day").text(
+            "Temperature :" + response2.list[2].main.temp +
+            "Humidity :" + response2.list[2].main.humidity +
+            "Wind speed :" + response2.list[2].wind.speed
+
+        );
+        $("#plus4day").text(
+            "Temperature :" + response2.list[4].main.temp +
+            "Humidity :" + response2.list[4].main.humidity +
+            "Wind speed :" + response2.list[4].wind.speed
+        )
+        $("#plus5day").text(
+            "Temperature :" + response2.list[5].main.temp +
+            "Humidity :" + response2.list[5].main.humidity +
+            "Wind speed :" + response2.list[5].wind.speed
+
+        );
 
     })
 
