@@ -41,7 +41,7 @@ $("#search-button").on("click", function (event) {
     localStorage.setItem("cities", cities_stringy);
 
     //Post City and current Date to jumbotron
-    var currentDate = moment().add(10, 'days').calendar();
+    var currentDate = moment().format('L');
     $("#city-and-date").text(inputtedCity + " " + currentDate);
 
 
