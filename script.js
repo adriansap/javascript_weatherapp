@@ -192,7 +192,7 @@ function renderInfo() {
     }).then(function (response) { //after the call, after info is returned, .then ...
 
         console.log(response);
-        var currentDate = moment().add(10, 'days').calendar();
+        var currentDate = moment().format('L');
         $("#city-and-date").text(cityButtonClicked + " " + currentDate); //[NOT UPDATING/WORKING]
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
         $("#temperature").text("Temperature: " + cTemp);
