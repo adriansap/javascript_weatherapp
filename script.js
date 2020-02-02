@@ -2,7 +2,8 @@
 //1. City history buttons
 var cities = [];
 var inputtedCity = "";
-
+var uvIndex;
+var cTemp;
 
 function renderButtons() {
 
@@ -47,49 +48,6 @@ $("#search-button").on("click", function (event) {
     // The renderButtons function is called, rendering the list of movie buttons
     renderButtons();
 
-
-    //2. AJAX call
-
-    var APIKey = "5be3cfd9c54b7db5d70a69fca9f026e4";
-
-    // Here we are building the URL we need to query the database
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputtedCity + "&appid=" + APIKey;
-
-    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
-        url: queryURL,
-        method: "GET" // (GET and POST most commonly used methods.)
-    }).then(function (response) { //after the call, after info is returned, .then ...
-
-        console.log(response);
-
-
-        $("#temperature").text("Temperature: " + response.main.temp);
-        $("#humidity").text("Humidity: " + response.main.humidity);
-        $("#windspeed").text("Wind speed: " + response.wind.speed);
-        $("#uv-index").text("UV Index :" + response.uv)
-
-        // var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
-        // $(".temp").append(cTemp);
-    })
-
-    // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + "{" + inputtedCity + "}" + "," + "{United States of America}&cnt={5}" + "&appid=5be3cfd9c54b7db5d70a69fca9f026e4"
-
-    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
-        url: queryURL2,
-        method: "GET" // (GET and POST most commonly used methods.)
-    }).then(function (response2) { //after the call, after info is returned, .then ...
-
-        console.log(response2);
-
-        // $("#plus1day").text(date+1 + response2.day1);
-        // $("#plus2day").text("Humidity: " + response.main.humidity);
-        // $("#plus3day").text("Wind speed: " + response.wind.speed);
-        // $("#plus4day").text("UV Index :" + response.uv)
-        // $("#plus5day").text("UV Index :" + response.uv)
-
-    })
-
     //3. Get latitude & longitude for city via AJAX call to opencagedata.org
     var APIkey3 = "db63f24d1b984bf9a6b77af5cc2dca28"; //for opencagedata.org
     var queryURL3 = "https://api.opencagedata.com/geocode/v1/json?q=" + inputtedCity + "&key=" + APIkey3
@@ -108,18 +66,66 @@ $("#search-button").on("click", function (event) {
 
         //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
 
-        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appi={5be3cfd9c54b7db5d70a69fca9f026e4}&lat={" + cityLat + "}" + "&lon={" + cityLon + "}"
+        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
             url: queryURL4,
             method: "GET" // (GET and POST most commonly used methods.)
         }).then(function (response4) { //after the call, after info is returned, .then ...
 
-            console.log("response4 uv :" + response4);
+            console.log(response4);
+            uvIndex = response4.value;
+            console.log("uvIndex: " + uvIndex)
+            $("#uv-index").text("UV Index :" + uvIndex);
+
+
             // $("#uv-index").text(response)
 
         })
 
     })
+
+    //2. AJAX call
+
+    var APIKey = "5be3cfd9c54b7db5d70a69fca9f026e4";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputtedCity + "&appid=" + APIKey;
+
+    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
+        url: queryURL,
+        method: "GET" // (GET and POST most commonly used methods.)
+    }).then(function (response) { //after the call, after info is returned, .then ...
+
+        console.log(response);
+
+
+        cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
+        $("#temperature").text("Temperature: " + cTemp);
+        $("#humidity").text("Humidity: " + response.main.humidity);
+        $("#windspeed").text("Wind speed: " + response.wind.speed);
+        // $("#uv-index").text("UV Index :" + uvIndex);
+
+    })
+
+    // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
+    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + inputtedCity + "," + "United States of America&cnt={5}" + APIKey;
+
+    $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
+        url: queryURL2,
+        method: "GET" // (GET and POST most commonly used methods.)
+    }).then(function (response2) { //after the call, after info is returned, .then ...
+
+        console.log(response2);
+
+        // $("#plus1day").text(date+1 + response2.day1);
+        // $("#plus2day").text("Humidity: " + response.main.humidity);
+        // $("#plus3day").text("Wind speed: " + response.wind.speed);
+        // $("#plus4day").text("UV Index :" + response.uv)
+        // $("#plus5day").text("UV Index :" + response.uv)
+
+    })
+
+
 
     //get 10-day forecast via accuweather api
 
@@ -160,14 +166,30 @@ function renderInfo() {
 
         console.log(response);
 
+        cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
 
-        $("#temperature").text("Temperature: " + response.main.temp);
-        $("#humidity").text("Humidity: " + response.main.humidity);
-        $("#windspeed").text("Wind speed: " + response.wind.speed);
-        $("#uv-index").text("UV Index :" + response.uv)
+        $("#temperature").text("Temperature: " + cTemp);
+        $("#humidity").text("Humidity: " + response.main.humidity + "%");
+        $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
+        // $("#uv-index").text("UV Index :" + uvIndex)
 
-        var cTemp = $("<div>").text((parseInt(response.main.temp) - 273.15) * 1.80 + 32);
-        $(".temp").append(cTemp);
+        //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
+
+        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
+        $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
+            url: queryURL4,
+            method: "GET" // (GET and POST most commonly used methods.)
+        }).then(function (response4) { //after the call, after info is returned, .then ...
+
+            console.log(response4);
+            uvIndex = response4.value;
+            console.log("uvIndex: " + uvIndex)
+            $("#uv-index").text("UV Index :" + uvIndex);
+
+
+            // $("#uv-index").text(response)
+
+        })
     })
 
 
