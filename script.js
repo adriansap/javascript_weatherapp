@@ -4,9 +4,10 @@ var cities = [];
 var inputtedCity;
 var uvIndex;
 var cTemp;
+var retrieveCities;
 
 function renderButtonsOnLoad() {
-    var retrieveCities = localStorage.getItem("cities");
+    retrieveCities = localStorage.getItem("cities");
     var parsedCitiesToArray = JSON.parse(retrieveCities);
     console.log("parsed cities: " + parsedCitiesToArray);
     if (parsedCitiesToArray != null) {
@@ -21,14 +22,16 @@ function renderButtonsOnLoad() {
     }
 }
 
+window.onload = function () {
+    renderButtonsOnLoad(); //to render buttons from localstorage, on page refresh, for instance. [not working]
 
-renderButtonsOnLoad(); //to render buttons from localstorage, on page refresh, for instance. [not working]
+};
 
 function renderButtons() {
 
     // Delete the content inside the buttons-view div prior to adding new cities
     // (this is necessary otherwise you will have repeat buttons)
-    // $("#search-history").empty();
+    $("#search-history").empty();
     // Loop through the array of movies, then generate buttons for each movie in the array
     for (i = 0; i < cities.length; i++) {
         var newButton = $("<button>");
@@ -55,7 +58,7 @@ $("#search-button").on("click", function (event) {
 
     //Set to local storage
     cities_stringy = JSON.stringify(cities);
-    localStorage.setItem("cities", cities_stringy);
+    localStorage.setItem("cities", cities_stringy); // flag
 
     //Post City and current Date to jumbotron
     var currentDate = moment().format('L');
