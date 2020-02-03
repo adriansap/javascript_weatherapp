@@ -271,19 +271,20 @@ function renderInfo() {
         var oneDaysForward = moment().add(1, 'day');
         $("#plus1day").html(
             oneDaysForward.format('dddd MMMM DD') + "<br>" +
-            "Temperature :" + cTemp1 + "F" +
-            "Humidity :" + response2.list[0].main.humidity + "%" +
-            "Wind speed :" + response2.list[0].wind.speed + "MPH"
+            "Temperature :" + cTemp1 + "F" + "<br>" +
+            "Humidity :" + response2.list[0].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[0].wind.speed + "MPH" + "<br>"
         );
+        // .html(`<h1>${cTemp1}</h1>`)
 
         cTemp2 = Math.floor(((parseInt(response2.list[1].main.temp) - 273.15) * 1.80 + 32));
 
         var twoDaysForward = moment().add(2, 'day');
-        $("#plus2day").text(
-            twoDaysForward.format('dddd MMMM DD') +
-            "Temperature :" + cTemp2 + "F" +
-            "Humidity :" + response2.list[1].main.humidity +
-            "Wind speed :" + response2.list[1].wind.speed
+        $("#plus2day").html(
+            twoDaysForward.format('dddd MMMM DD') + "<br>" +
+            "Temperature :" + cTemp2 + "F" + "<br>" +
+            "Humidity :" + response2.list[1].main.humidity + "<br>" +
+            "Wind speed :" + response2.list[1].wind.speed + "<br>"
 
         );
 
@@ -291,11 +292,11 @@ function renderInfo() {
 
         var threeDaysForward = moment().add(3, 'day');
 
-        $("#plus3day").text(
-            threeDaysForward.format('dddd MMMM DD') +
-            "Temperature :" + cTemp3 + "F" +
-            "Humidity :" + response2.list[2].main.humidity +
-            "Wind speed :" + response2.list[2].wind.speed
+        $("#plus3day").html(
+            threeDaysForward.format('dddd MMMM DD') + "<br>" +
+            "Temperature :" + cTemp3 + "F" + "<br>" +
+            "Humidity :" + response2.list[2].main.humidity + "<br>" +
+            "Wind speed :" + response2.list[2].wind.speed + "<br>"
 
         );
 
@@ -303,24 +304,25 @@ function renderInfo() {
 
         var fourDaysForward = moment().add(4, 'day');
 
-        $("#plus4day").text(
-            fourDaysForward.format('dddd MMMM DD') +
 
-            "Temperature :" + cTemp4 + "F" +
-            "Humidity :" + response2.list[4].main.humidity +
-            "Wind speed :" + response2.list[4].wind.speed
+        $("#plus4day").html(
+            fourDaysForward.format('dddd MMMM DD') + "<br>" +
+
+            "Temperature :" + cTemp4 + "F" + "<br>" +
+            "Humidity :" + response2.list[4].main.humidity + "<br>" +
+            "Wind speed :" + response2.list[4].wind.speed + "<br>"
         )
 
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
 
         var fiveDaysForward = moment().add(5, 'day');
 
-        $("#plus5day").text(
-            fiveDaysForward.format('dddd MMMM DD') +
+        $("#plus5day").html(
+            fiveDaysForward.format('dddd MMMM DD') + "<br>" +
 
-            "Temperature :" + cTemp5 + "F" +
-            "Humidity :" + response2.list[5].main.humidity +
-            "Wind speed :" + response2.list[5].wind.speed
+            "Temperature :" + cTemp5 + "F" + "<br>" +
+            "Humidity :" + response2.list[5].main.humidity + "<br>" +
+            "Wind speed :" + response2.list[5].wind.speed + "<br>"
 
         );
 

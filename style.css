@@ -51,8 +51,9 @@ body {
 }
 
 .cities {
-    width:250px;
+    width:255px;
     margin:0px;
+    padding:5px;
     position:relative;
     left:14px;
 }
