@@ -28,7 +28,7 @@ function renderButtons() {
 
     // Delete the content inside the buttons-view div prior to adding new cities
     // (this is necessary otherwise you will have repeat buttons)
-    $("#search-history").empty();
+    // $("#search-history").empty();
     // Loop through the array of movies, then generate buttons for each movie in the array
     for (i = 0; i < cities.length; i++) {
         var newButton = $("<button>");
