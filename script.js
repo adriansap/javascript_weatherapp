@@ -257,24 +257,32 @@ function renderInfo() {
     }).then(function (response2) { //after the call, after info is returned, .then ...
 
         console.log(response2);
-
         cTemp1 = Math.floor(((parseInt(response2.list[0].main.temp) - 273.15) * 1.80 + 32));
-
+        var iconplus1 = response2.list[0].weather[0].icon;
+        var urlplus1 = `http://openweathermap.org/img/wn/${iconplus1}@2x.png`
+        var urlIcon = JSON.stringify(urlplus1)
+        console.log("icon id: " + urlIcon + "urlplus original " + urlplus1) //returns value
 
         var oneDaysForward = moment().add(1, 'day');
         $("#plus1day").html(
             oneDaysForward.format('dddd MMMM DD') + "<br>" +
+            `<img src="${urlplus1}"/>`
+            + "<br>" +
             "Temperature :" + cTemp1 + "F" + "<br>" +
             "Humidity :" + response2.list[0].main.humidity + "%" + "<br>" +
             "Wind speed :" + response2.list[0].wind.speed + "MPH" + "<br>"
         );
+
         // .html(`<h1>${cTemp1}</h1>`)
 
         cTemp2 = Math.floor(((parseInt(response2.list[1].main.temp) - 273.15) * 1.80 + 32));
-
+        var iconplus2 = response2.list[1].weather[0].icon;
+        var urlplus2 = `http://openweathermap.org/img/wn/${iconplus2}@2x.png`
         var twoDaysForward = moment().add(2, 'day');
         $("#plus2day").html(
             twoDaysForward.format('dddd MMMM DD') + "<br>" +
+            `<img src="${urlplus2}"/>`
+            + "<br>" +
             "Temperature :" + cTemp2 + "F" + "<br>" +
             "Humidity :" + response2.list[1].main.humidity + "%" + "<br>" +
             "Wind speed :" + response2.list[1].wind.speed + "MPH" + "<br>"
@@ -282,11 +290,14 @@ function renderInfo() {
         );
 
         cTemp3 = Math.floor(((parseInt(response2.list[2].main.temp) - 273.15) * 1.80 + 32));
-
+        var iconplus3 = response2.list[2].weather[0].icon;
+        var urlplus3 = `http://openweathermap.org/img/wn/${iconplus3}@2x.png`
         var threeDaysForward = moment().add(3, 'day');
 
         $("#plus3day").html(
             threeDaysForward.format('dddd MMMM DD') + "<br>" +
+            `<img src="${urlplus3}"/>`
+            + "<br>" +
             "Temperature :" + cTemp3 + "F" + "<br>" +
             "Humidity :" + response2.list[2].main.humidity + "%" + "<br>" +
             "Wind speed :" + response2.list[2].wind.speed + "MPH" + "<br>"
@@ -297,10 +308,12 @@ function renderInfo() {
 
         var fourDaysForward = moment().add(4, 'day');
 
-
+        var iconplus4 = response2.list[3].weather[0].icon;
+        var urlplus4 = `http://openweathermap.org/img/wn/${iconplus4}@2x.png`
         $("#plus4day").html(
             fourDaysForward.format('dddd MMMM DD') + "<br>" +
-
+            `<img src="${urlplus4}"/>`
+            + "<br>" +
             "Temperature :" + cTemp4 + "F" + "<br>" +
             "Humidity :" + response2.list[3].main.humidity + "%" + "<br>" +
             "Wind speed :" + response2.list[3].wind.speed + "MPH" + "<br>"
@@ -308,11 +321,14 @@ function renderInfo() {
 
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
 
+        var iconplus5 = response2.list[4].weather[0].icon;
+        var urlplus5 = `http://openweathermap.org/img/wn/${iconplus5}@2x.png`
         var fiveDaysForward = moment().add(5, 'day');
 
         $("#plus5day").html(
             fiveDaysForward.format('dddd MMMM DD') + "<br>" +
-
+            `<img src="${urlplus5}"/>`
+            + "<br>" +
             "Temperature :" + cTemp5 + "F" + "<br>" +
             "Humidity :" + response2.list[4].main.humidity + "%" + "<br>" +
             "Wind speed :" + response2.list[4].wind.speed + "MPH" + "<br>"
