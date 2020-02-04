@@ -11,6 +11,7 @@ body {
     position:relative;
     left:200px;
     width:800px;
+    top:-40px;
 }
 
 .header {
