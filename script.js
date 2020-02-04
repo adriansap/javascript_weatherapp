@@ -281,8 +281,8 @@ function renderInfo() {
         $("#plus2day").html(
             twoDaysForward.format('dddd MMMM DD') + "<br>" +
             "Temperature :" + cTemp2 + "F" + "<br>" +
-            "Humidity :" + response2.list[1].main.humidity + "<br>" +
-            "Wind speed :" + response2.list[1].wind.speed + "<br>"
+            "Humidity :" + response2.list[1].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[1].wind.speed + "MPH" + "<br>"
 
         );
 
@@ -293,8 +293,8 @@ function renderInfo() {
         $("#plus3day").html(
             threeDaysForward.format('dddd MMMM DD') + "<br>" +
             "Temperature :" + cTemp3 + "F" + "<br>" +
-            "Humidity :" + response2.list[2].main.humidity + "<br>" +
-            "Wind speed :" + response2.list[2].wind.speed + "<br>"
+            "Humidity :" + response2.list[2].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[2].wind.speed + "MPH" + "<br>"
 
         );
 
@@ -307,8 +307,8 @@ function renderInfo() {
             fourDaysForward.format('dddd MMMM DD') + "<br>" +
 
             "Temperature :" + cTemp4 + "F" + "<br>" +
-            "Humidity :" + response2.list[4].main.humidity + "<br>" +
-            "Wind speed :" + response2.list[4].wind.speed + "<br>"
+            "Humidity :" + response2.list[4].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[4].wind.speed + "MPH" + "<br>"
         )
 
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
@@ -319,8 +319,8 @@ function renderInfo() {
             fiveDaysForward.format('dddd MMMM DD') + "<br>" +
 
             "Temperature :" + cTemp5 + "F" + "<br>" +
-            "Humidity :" + response2.list[5].main.humidity + "<br>" +
-            "Wind speed :" + response2.list[5].wind.speed + "<br>"
+            "Humidity :" + response2.list[5].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[5].wind.speed + "MPH" + "<br>"
 
         );
 

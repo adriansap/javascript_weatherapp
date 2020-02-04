@@ -51,11 +51,11 @@ body {
 }
 
 .cities {
-    width:255px;
+    width:260px;
     margin:0px;
     padding:5px;
     position:relative;
-    left:14px;
+    left:10px;
 }
 
 #city-and-date {
