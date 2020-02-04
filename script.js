@@ -6,7 +6,7 @@ var uvIndex;
 var cTemp;
 var retrieveCities;
 
-function renderButtonsOnLoad() {
+function renderButtonsOnLoad() {                                //retreives history of previously searched cities.
     retrieveCities = localStorage.getItem("cities");
     var parsedCitiesToArray = JSON.parse(retrieveCities);
     console.log("parsed cities: " + parsedCitiesToArray);
@@ -16,14 +16,14 @@ function renderButtonsOnLoad() {
             newButton.text(parsedCitiesToArray[i]);
             newButton.addClass("cities");
             newButton.attr("data-name", parsedCitiesToArray[i]);
-            $("#search-history").append(newButton)
+            $("#search-history").append(newButton);
             cities.push(parsedCitiesToArray[i]); //flag
         }
     }
 }
 
 window.onload = function () {
-    renderButtonsOnLoad(); //to render buttons from localstorage, on page refresh, for instance. [not working]
+    renderButtonsOnLoad(); //to render buttons from localstorage, on page refresh, for instance.
 
 };
 
@@ -32,7 +32,7 @@ function renderButtons() {
     // Delete the content inside the buttons-view div prior to adding new cities
     // (this is necessary otherwise you will have repeat buttons)
     $("#search-history").empty();
-    // Loop through the array of movies, then generate buttons for each movie in the array
+    // Loop through the array of cities, then generate buttons for each city in the array
     for (i = 0; i < cities.length; i++) {
         var newButton = $("<button>");
         newButton.text(cities[i]);
@@ -83,7 +83,7 @@ $("#search-button").on("click", function (event) {
         console.log(cityLat);
         console.log(cityLon);
 
-        //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
+        //4. AJAX call for UV using lat and lon 
 
         var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
@@ -107,7 +107,6 @@ $("#search-button").on("click", function (event) {
 
     var APIKey = "5be3cfd9c54b7db5d70a69fca9f026e4";
 
-    // Here we are building the URL we need to query the database
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputtedCity + "&appid=" + APIKey;
 
     $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
@@ -125,11 +124,10 @@ $("#search-button").on("click", function (event) {
         $("#temperature").text("Temperature: " + cTemp + "F");
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
         $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
-        // $("#uv-index").text("UV Index :" + uvIndex);
 
     })
 
-    // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
+    // 3. AJAX call for 5 day forecast, with special API for such purpose  
     var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + inputtedCity + "," + "us" + "&appid=" + APIKey;
 
     $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
@@ -186,7 +184,7 @@ $("#search-button").on("click", function (event) {
 
         var fiveDaysForward = moment().add(5, 'day');
 
-        $("#plus5day").text(
+        $("#plus5day").html(
             fiveDaysForward.format('dddd MMMM DD') + "<br>" +
 
             "Temperature :" + cTemp5 + "F" + "<br>" +
@@ -224,9 +222,9 @@ function renderInfo() {
 
         console.log(response);
         var currentDate = moment().format('L');
-        $("#city-and-date").text(cityButtonClicked + " " + currentDate); //[NOT UPDATING/WORKING]
+        $("#city-and-date").text(cityButtonClicked + " " + currentDate);
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
-        $("#temperature").text("Temperature: " + cTemp);
+        $("#temperature").text("Temperature: " + cTemp + "F");
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
         $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
         // $("#uv-index").text("UV Index :" + uvIndex)
