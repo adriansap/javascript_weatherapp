@@ -44,6 +44,7 @@ body {
     border: 1px solid black;
     position:relative;
     right:0px;
+    font-size:13px;
 }
 
 .right-half {
@@ -56,6 +57,7 @@ body {
     padding:5px;
     position:relative;
     left:10px;
+    font-size:12px;
 }
 
 #city-and-date {
