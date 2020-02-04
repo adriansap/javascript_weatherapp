@@ -115,10 +115,10 @@ $("#search-button").on("click", function (event) {
     }).then(function (response) { //after the call, after info is returned, .then ...
 
         console.log(response);
-        // var icon1 = response2.weather[0].icon
+        var icon1 = response.weather[0].icon
+        var url1 = "http://openweathermap.org/img/wn/" + icon1 + "@2x.png"
+        $("#iconMain").attr("src", url1)
 
-
-        // $("#iconMain").attr("src", "http://openweathermap.org/img/wn/" + icon1 + "@2x.png");
 
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
         $("#temperature").text("Temperature: " + cTemp + "F");
