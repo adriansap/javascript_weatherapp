@@ -116,7 +116,10 @@ $("#search-button").on("click", function (event) {
     }).then(function (response) { //after the call, after info is returned, .then ...
 
         console.log(response);
+        // var icon1 = response2.weather[0].icon
 
+
+        // $("#iconMain").attr("src", "http://openweathermap.org/img/wn/" + icon1 + "@2x.png");
 
         cTemp = Math.floor(((parseInt(response.main.temp) - 273.15) * 1.80 + 32));
         $("#temperature").text("Temperature: " + cTemp + "F");
@@ -228,10 +231,8 @@ function renderInfo() {
         $("#windspeed").text("Wind speed: " + response.wind.speed + "MPH");
         // $("#uv-index").text("UV Index :" + uvIndex)
 
-        //cloudy-ness
-        var cloudy = response.clouds.all
-        console.log("cloudy: " + cloudy)
-        //4. AJAX call for UV using lat and lon [CALLBACK STATES UNAUTHORIZED]
+
+        //4. AJAX call for UV using lat and lon 
 
         var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
@@ -245,7 +246,6 @@ function renderInfo() {
             $("#uv-index").text("UV Index :" + uvIndex);
 
 
-            // $("#uv-index").text(response)
 
         })
     })
@@ -261,10 +261,7 @@ function renderInfo() {
         console.log(response2);
 
         cTemp1 = Math.floor(((parseInt(response2.list[0].main.temp) - 273.15) * 1.80 + 32));
-        // var icon1 = response2.list[0].weather[0].icon
 
-
-        // $("#plus1").attr("src", "http://openweathermap.org/img/wn/" + icon1 + "@2x.png");
 
         var oneDaysForward = moment().add(1, 'day');
         $("#plus1day").html(
@@ -307,8 +304,8 @@ function renderInfo() {
             fourDaysForward.format('dddd MMMM DD') + "<br>" +
 
             "Temperature :" + cTemp4 + "F" + "<br>" +
-            "Humidity :" + response2.list[4].main.humidity + "%" + "<br>" +
-            "Wind speed :" + response2.list[4].wind.speed + "MPH" + "<br>"
+            "Humidity :" + response2.list[3].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[3].wind.speed + "MPH" + "<br>"
         )
 
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
@@ -319,8 +316,8 @@ function renderInfo() {
             fiveDaysForward.format('dddd MMMM DD') + "<br>" +
 
             "Temperature :" + cTemp5 + "F" + "<br>" +
-            "Humidity :" + response2.list[5].main.humidity + "%" + "<br>" +
-            "Wind speed :" + response2.list[5].wind.speed + "MPH" + "<br>"
+            "Humidity :" + response2.list[4].main.humidity + "%" + "<br>" +
+            "Wind speed :" + response2.list[4].wind.speed + "MPH" + "<br>"
 
         );
 

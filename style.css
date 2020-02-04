@@ -61,3 +61,12 @@ body {
 #city-and-date {
     font-size:20px;
 }
+
+#five-day-header {
+    position:relative;
+    left:-100px;
+}
+
+#temperature, #humidity, #windspeed {
+    text-align:left;
+}
