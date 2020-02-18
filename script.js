@@ -85,7 +85,7 @@ $("#search-button").on("click", function (event) {
 
         //4. AJAX call for UV using lat and lon 
 
-        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
+        var queryURL4 = "https://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
             url: queryURL4,
             method: "GET" // (GET and POST most commonly used methods.)
@@ -128,7 +128,7 @@ $("#search-button").on("click", function (event) {
     })
 
     // 3. AJAX call for 5 day forecast, with special API for such purpose  
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + inputtedCity + "," + "us" + "&appid=" + APIKey;
+    var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + inputtedCity + "," + "us" + "&appid=" + APIKey;
 
     $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
         url: queryURL2,
@@ -138,7 +138,7 @@ $("#search-button").on("click", function (event) {
         console.log(response2);
         cTemp1 = Math.floor(((parseInt(response2.list[0].main.temp) - 273.15) * 1.80 + 32));
         var iconplus1 = response2.list[0].weather[0].icon;
-        var urlplus1 = `http://openweathermap.org/img/wn/${iconplus1}@2x.png`
+        var urlplus1 = `https://openweathermap.org/img/wn/${iconplus1}@2x.png`
         var urlIcon = JSON.stringify(urlplus1)
         console.log("icon id: " + urlIcon + "urlplus original " + urlplus1) //returns value
 
@@ -156,7 +156,7 @@ $("#search-button").on("click", function (event) {
 
         cTemp2 = Math.floor(((parseInt(response2.list[1].main.temp) - 273.15) * 1.80 + 32));
         var iconplus2 = response2.list[1].weather[0].icon;
-        var urlplus2 = `http://openweathermap.org/img/wn/${iconplus2}@2x.png`
+        var urlplus2 = `https://openweathermap.org/img/wn/${iconplus2}@2x.png`
         var twoDaysForward = moment().add(2, 'day');
         $("#plus2day").html(
             twoDaysForward.format('dddd MMMM DD') + "<br>" +
@@ -171,7 +171,7 @@ $("#search-button").on("click", function (event) {
 
         cTemp3 = Math.floor(((parseInt(response2.list[2].main.temp) - 273.15) * 1.80 + 32));
         var iconplus3 = response2.list[2].weather[0].icon;
-        var urlplus3 = `http://openweathermap.org/img/wn/${iconplus3}@2x.png`
+        var urlplus3 = `https://openweathermap.org/img/wn/${iconplus3}@2x.png`
         var threeDaysForward = moment().add(3, 'day');
 
         $("#plus3day").html(
@@ -192,7 +192,7 @@ $("#search-button").on("click", function (event) {
         var fourDaysForward = moment().add(4, 'day');
 
         var iconplus4 = response2.list[3].weather[0].icon;
-        var urlplus4 = `http://openweathermap.org/img/wn/${iconplus4}@2x.png`
+        var urlplus4 = `https://openweathermap.org/img/wn/${iconplus4}@2x.png`
         $("#plus4day").html(
             fourDaysForward.format('dddd MMMM DD') + "<br>" +
             `<img src="${urlplus4}"/>`
@@ -206,7 +206,7 @@ $("#search-button").on("click", function (event) {
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
 
         var iconplus5 = response2.list[4].weather[0].icon;
-        var urlplus5 = `http://openweathermap.org/img/wn/${iconplus5}@2x.png`
+        var urlplus5 = `https://openweathermap.org/img/wn/${iconplus5}@2x.png`
         var fiveDaysForward = moment().add(5, 'day');
 
         $("#plus5day").html(
@@ -258,7 +258,7 @@ function renderInfo() {
 
         //4. AJAX call for UV using lat and lon 
 
-        var queryURL4 = "http://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
+        var queryURL4 = "https://api.openweathermap.org/data/2.5/uvi?appid=5be3cfd9c54b7db5d70a69fca9f026e4&lat=" + cityLat + "&lon=" + cityLon
         $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
             url: queryURL4,
             method: "GET" // (GET and POST most commonly used methods.)
@@ -275,7 +275,7 @@ function renderInfo() {
     })
 
     // 3. AJAX call for 5 day forecast, with special API for such purpose  [CALLBACK STATES UNAUTHORIZED]
-    var queryURL2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityButtonClicked + "," + "us" + "&appid=" + APIKey;
+    var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityButtonClicked + "," + "us" + "&appid=" + APIKey;
 
     $.ajax({ //make API call (ajax = Asynchronous Javascript And XML)
         url: queryURL2,
@@ -292,7 +292,7 @@ function renderInfo() {
 
             console.log(response);
             var icon1 = response.weather[0].icon
-            var url1 = "http://openweathermap.org/img/wn/" + icon1 + "@2x.png"
+            var url1 = "https://openweathermap.org/img/wn/" + icon1 + "@2x.png"
             $("#iconMain").attr("src", url1)
 
 
@@ -311,7 +311,7 @@ function renderInfo() {
         console.log(response2);
         cTemp1 = Math.floor(((parseInt(response2.list[0].main.temp) - 273.15) * 1.80 + 32));
         var iconplus1 = response2.list[0].weather[0].icon;
-        var urlplus1 = `http://openweathermap.org/img/wn/${iconplus1}@2x.png`
+        var urlplus1 = `https://openweathermap.org/img/wn/${iconplus1}@2x.png`
         var urlIcon = JSON.stringify(urlplus1)
         console.log("icon id: " + urlIcon + "urlplus original " + urlplus1) //returns value
 
@@ -329,7 +329,7 @@ function renderInfo() {
 
         cTemp2 = Math.floor(((parseInt(response2.list[1].main.temp) - 273.15) * 1.80 + 32));
         var iconplus2 = response2.list[1].weather[0].icon;
-        var urlplus2 = `http://openweathermap.org/img/wn/${iconplus2}@2x.png`
+        var urlplus2 = `https://openweathermap.org/img/wn/${iconplus2}@2x.png`
         var twoDaysForward = moment().add(2, 'day');
         $("#plus2day").html(
             twoDaysForward.format('dddd MMMM DD') + "<br>" +
@@ -343,7 +343,7 @@ function renderInfo() {
 
         cTemp3 = Math.floor(((parseInt(response2.list[2].main.temp) - 273.15) * 1.80 + 32));
         var iconplus3 = response2.list[2].weather[0].icon;
-        var urlplus3 = `http://openweathermap.org/img/wn/${iconplus3}@2x.png`
+        var urlplus3 = `https://openweathermap.org/img/wn/${iconplus3}@2x.png`
         var threeDaysForward = moment().add(3, 'day');
 
         $("#plus3day").html(
@@ -361,7 +361,7 @@ function renderInfo() {
         var fourDaysForward = moment().add(4, 'day');
 
         var iconplus4 = response2.list[3].weather[0].icon;
-        var urlplus4 = `http://openweathermap.org/img/wn/${iconplus4}@2x.png`
+        var urlplus4 = `https://openweathermap.org/img/wn/${iconplus4}@2x.png`
         $("#plus4day").html(
             fourDaysForward.format('dddd MMMM DD') + "<br>" +
             `<img src="${urlplus4}"/>`
@@ -374,7 +374,7 @@ function renderInfo() {
         cTemp5 = Math.floor(((parseInt(response2.list[4].main.temp) - 273.15) * 1.80 + 32));
 
         var iconplus5 = response2.list[4].weather[0].icon;
-        var urlplus5 = `http://openweathermap.org/img/wn/${iconplus5}@2x.png`
+        var urlplus5 = `https://openweathermap.org/img/wn/${iconplus5}@2x.png`
         var fiveDaysForward = moment().add(5, 'day');
 
         $("#plus5day").html(
